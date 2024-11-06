@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.10</version> <!-- Updated Spring Boot version -->
+        <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version> <!-- Keep Java 8 version -->
+        <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
 
@@ -31,30 +31,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- GitHub API dependency -->
         <dependency>
             <groupId>org.kohsuke</groupId>
             <artifactId>github-api</artifactId>
             <version>1.99</version>
         </dependency>
-
-        <!-- Twitter4J dependency -->
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
             <version>3.0.6</version>
         </dependency>
-
-        <!-- JUnit dependency for testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Spring Boot Test starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -74,8 +66,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- Mockito JUnit dependency -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -85,26 +75,20 @@
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <!-- Maven Surefire Plugin for running tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <argLine>${argLine} -Xmx1024m</argLine>  <!-- Heap size set to 1024m (1GB) -->
-                    <forkCount>1C</forkCount> <!-- Use 1 JVM per CPU core -->
-                    <reuseForks>true</reuseForks> <!-- Reuse forks for efficiency -->
-                    <redirectTestOutputToFile>true</redirectTestOutputToFile> <!-- Redirect test output to file -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <argLine>-Xmx2048m</argLine> <!-- Simplified if ${argLine} is not defined -->
                 </configuration>
             </plugin>
-
-            <!-- Jacoco Maven Plugin for code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -115,7 +99,6 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- Attached to Maven test phase -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
